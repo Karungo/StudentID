@@ -83,7 +83,7 @@ public class StudentViewModel : INotifyPropertyChanged
 
                     students.Add(new Student
                     {
-                        Id = no,
+                        SerialNo = no,
                         Name = name.ToUpper(),
                         Gender = gender.ToUpper(),
                         AdmissionNumber = admissionNumber.ToUpper(),
@@ -161,7 +161,7 @@ public class StudentViewModel : INotifyPropertyChanged
         using (ExcelPackage package = new ExcelPackage(file))
         {
             ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Students");
-            worksheet.Cells[1, 1].Value = "Id";
+            worksheet.Cells[1, 1].Value = "Serial No";
             worksheet.Cells[1, 2].Value = "Name";
             worksheet.Cells[1, 3].Value = "Gender";
             worksheet.Cells[1, 4].Value = "Admission Number";
@@ -173,7 +173,7 @@ public class StudentViewModel : INotifyPropertyChanged
             int row = 2;
             foreach (var student in students)
             {
-                worksheet.Cells[row, 1].Value = student.Id; 
+                worksheet.Cells[row, 1].Value = student.SerialNo; 
                 worksheet.Cells[row, 2].Value = student.Name.ToUpper();
                 worksheet.Cells[row, 3].Value = student.Gender.ToUpper();
                 worksheet.Cells[row, 4].Value = student.AdmissionNumber.ToUpper();

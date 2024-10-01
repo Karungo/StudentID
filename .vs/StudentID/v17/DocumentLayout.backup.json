@@ -1,26 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\KONZA\\source\\repos\\StudentID\\",
+  "WorkspaceRootPath": "C:\\Users\\KONZA\\Desktop\\StudentID\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|c:\\users\\konza\\source\\repos\\studentid\\viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\source\\repos\\StudentID\\model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|c:\\users\\konza\\desktop\\studentid\\model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\source\\repos\\StudentID\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\source\\repos\\StudentID\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\source\\repos\\StudentID\\interface\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:interface\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\Interface\\RelayCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:Interface\\RelayCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,66 +30,66 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\KONZA\\source\\repos\\StudentID\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\KONZA\\source\\repos\\StudentID\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-09-30T12:18:51.394Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\KONZA\\source\\repos\\StudentID\\View\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml",
               "RelativeDocumentMoniker": "View\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\KONZA\\source\\repos\\StudentID\\View\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml",
               "RelativeToolTip": "View\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-09-30T12:05:42.645Z"
+              "WhenOpened": "2024-10-01T10:45:22.247Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\source\\repos\\StudentID\\Model\\Student.cs",
-              "RelativeDocumentMoniker": "Model\\Student.cs",
-              "ToolTip": "C:\\Users\\KONZA\\source\\repos\\StudentID\\Model\\Student.cs",
-              "RelativeToolTip": "Model\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
+              "Title": "StudentViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\ViewModel\\StudentViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\StudentViewModel.cs",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\ViewModel\\StudentViewModel.cs*",
+              "RelativeToolTip": "ViewModel\\StudentViewModel.cs*",
+              "ViewState": "AgIAALMAAAAAAAAAAAAowPYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T10:16:17.219Z"
+              "WhenOpened": "2024-09-27T09:01:20.852Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Student.cs",
+              "RelativeDocumentMoniker": "Model\\Student.cs",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Student.cs",
+              "RelativeToolTip": "Model\\Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T10:16:17.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "RelayCommand.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\source\\repos\\StudentID\\Interface\\RelayCommand.cs",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\Interface\\RelayCommand.cs",
               "RelativeDocumentMoniker": "Interface\\RelayCommand.cs",
-              "ToolTip": "C:\\Users\\KONZA\\source\\repos\\StudentID\\Interface\\RelayCommand.cs",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\Interface\\RelayCommand.cs",
               "RelativeToolTip": "Interface\\RelayCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-27T09:02:54.499Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StudentViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\source\\repos\\StudentID\\ViewModel\\StudentViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\StudentViewModel.cs",
-              "ToolTip": "C:\\Users\\KONZA\\source\\repos\\StudentID\\ViewModel\\StudentViewModel.cs",
-              "RelativeToolTip": "ViewModel\\StudentViewModel.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwEEAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T09:01:20.852Z",
-              "EditorCaption": ""
+              "DocumentIndex": 4,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-09-30T12:18:51.394Z"
             }
           ]
         }
