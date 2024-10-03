@@ -268,3 +268,5 @@ C:\Users\KONZA\Desktop\StudentID\bin\Debug\OpenCvSharp.dll
 C:\Users\KONZA\Desktop\StudentID\bin\Debug\OpenCvSharp.xml
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID_Content.g.cs
 C:\Users\KONZA\Desktop\StudentID\bin\Debug\haarcascade_frontalface_default.xml
+C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID_MarkupCompile.lref
+C:\Users\KONZA\Desktop\StudentID\obj\Debug\App.baml

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -33,15 +34,41 @@ public class StudentViewModel : INotifyPropertyChanged
     public ICommand DeletePhotoCommand { get; set; }
     public ICommand ReuploadPhotoCommand { get; set; }
 
+    // Progress reporting and cancellation support
+    private double _progress;
+    public double Progress
+    {
+        get => _progress;
+        set
+        {
+            _progress = value;
+            OnPropertyChanged(nameof(Progress));
+        }
+    }
+
+    private bool _isLoading;
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set
+        {
+            _isLoading = value;
+            OnPropertyChanged(nameof(IsLoading));
+        }
+    }
+
+    private CancellationTokenSource _cancellationTokenSource;
+
     public StudentViewModel()
     {
         Students = new ObservableCollection<Student>();
         LoadFileCommand = new RelayCommand(async () => await LoadFileAsync());
         ExportToFileCommand = new RelayCommand(async () => await ExportToFileAsync());
-        UploadPhotosCommand = new RelayCommand(() => UploadPhotos());
-        CropPhotoCommand = new RelayCommand<string>(CropPhoto);
+        UploadPhotosCommand = new RelayCommand(async () => await UploadPhotosAsync());
+        CropPhotoCommand = new RelayCommand<string>(async (admissionNumber) => await CropPhotoAsync(admissionNumber));
         DeletePhotoCommand = new RelayCommand<string>(DeletePhoto);
-        ReuploadPhotoCommand = new RelayCommand<string>(ReuploadPhoto);
+        ReuploadPhotoCommand = new RelayCommand<string>(async (admissionNumber) => await ReuploadPhotoAsync(admissionNumber));
+        _cancellationTokenSource = new CancellationTokenSource();
     }
 
     private async Task LoadFileAsync()
@@ -56,7 +83,9 @@ public class StudentViewModel : INotifyPropertyChanged
         if (result == true)
         {
             string filePath = openFileDialog.FileName;
+            IsLoading = true;
             await Task.Run(() => ReadExcelFileInBatchesAsync(filePath));
+            IsLoading = false;
         }
     }
 
@@ -141,7 +170,7 @@ public class StudentViewModel : INotifyPropertyChanged
         return expiryDate;
     }
 
-    private void UploadPhotos()
+    private async Task UploadPhotosAsync()
     {
         OpenFileDialog openFileDialog = new OpenFileDialog
         {
@@ -153,27 +182,30 @@ public class StudentViewModel : INotifyPropertyChanged
         bool? result = openFileDialog.ShowDialog();
         if (result == true)
         {
-            foreach (var filePath in openFileDialog.FileNames)
+            IsLoading = true;
+            await Task.WhenAll(openFileDialog.FileNames.Select(filePath => Task.Run(() =>
             {
                 string fileName = Path.GetFileNameWithoutExtension(filePath).ToUpper().Replace('-', '/');
                 var student = Students.FirstOrDefault(s => s.AdmissionNumber == fileName);
 
-                Application.Current.Dispatcher.Invoke(() =>
+                if (student != null)
                 {
-                    if (student != null)
-                    {
-                        student.PhotoPath = ProcessPhoto(filePath);
-                    }
-                    else
+                    student.PhotoPath = ProcessPhoto(filePath);
+                }
+                else
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
                         Students.Add(new Student
                         {
                             AdmissionNumber = fileName,
                             PhotoPath = ProcessPhoto(filePath)
                         });
-                    }
-                });
-            }
+                    });
+                }
+            })));
+
+            IsLoading = false;
         }
     }
 
@@ -226,7 +258,7 @@ public class StudentViewModel : INotifyPropertyChanged
         }
     }
 
-    private void CropPhoto(string admissionNumber)
+    private async Task CropPhotoAsync(string admissionNumber)
     {
         var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
         if (student != null && !string.IsNullOrEmpty(student.PhotoPath))
@@ -246,7 +278,7 @@ public class StudentViewModel : INotifyPropertyChanged
         }
     }
 
-    private void ReuploadPhoto(string admissionNumber)
+    private async Task ReuploadPhotoAsync(string admissionNumber)
     {
         var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
         if (student != null)
@@ -279,7 +311,9 @@ public class StudentViewModel : INotifyPropertyChanged
         if (result == true)
         {
             string filePath = saveFileDialog.FileName;
+            IsLoading = true;
             await Task.Run(() => ExportDataToExcel(filePath, Students.ToList()));
+            IsLoading = false;
             MessageBox.Show("Data exported successfully!");
         }
     }
@@ -332,4 +366,3 @@ public class StudentViewModel : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
-
