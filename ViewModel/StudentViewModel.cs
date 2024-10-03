@@ -2,7 +2,7 @@
 using OfficeOpenXml;
 using StudentID.Model;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -10,11 +10,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using OpenCvSharp;
+using System.Collections.Generic;
 
 public class StudentViewModel : INotifyPropertyChanged
 {
-    private List<Student> _students;
-    public List<Student> Students
+    private ObservableCollection<Student> _students;
+    public ObservableCollection<Student> Students
     {
         get => _students;
         set
@@ -25,12 +27,21 @@ public class StudentViewModel : INotifyPropertyChanged
     }
 
     public ICommand LoadFileCommand { get; set; }
+    public ICommand UploadPhotosCommand { get; set; }
     public ICommand ExportToFileCommand { get; set; }
+    public ICommand CropPhotoCommand { get; set; }
+    public ICommand DeletePhotoCommand { get; set; }
+    public ICommand ReuploadPhotoCommand { get; set; }
 
     public StudentViewModel()
     {
+        Students = new ObservableCollection<Student>();
         LoadFileCommand = new RelayCommand(async () => await LoadFileAsync());
         ExportToFileCommand = new RelayCommand(async () => await ExportToFileAsync());
+        UploadPhotosCommand = new RelayCommand(() => UploadPhotos());
+        CropPhotoCommand = new RelayCommand<string>(CropPhoto);
+        DeletePhotoCommand = new RelayCommand<string>(DeletePhoto);
+        ReuploadPhotoCommand = new RelayCommand<string>(ReuploadPhoto);
     }
 
     private async Task LoadFileAsync()
@@ -45,24 +56,21 @@ public class StudentViewModel : INotifyPropertyChanged
         if (result == true)
         {
             string filePath = openFileDialog.FileName;
-            await Task.Run(() => Students = ReadExcelFileInBatches(filePath));
+            await Task.Run(() => ReadExcelFileInBatchesAsync(filePath));
         }
     }
 
-    private List<Student> ReadExcelFileInBatches(string filePath)
+    private async Task ReadExcelFileInBatchesAsync(string filePath)
     {
         ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-        List<Student> students = new List<Student>();
-        const int batchSize = 1000; // Process in batches for scalability
-
+        const int batchSize = 1000;
         FileInfo fileInfo = new FileInfo(filePath);
         using (ExcelPackage package = new ExcelPackage(fileInfo))
         {
             ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
             int rowCount = worksheet.Dimension.Rows;
 
-            // Define the pattern for AdmissionNumber
             string pattern = @"^[A-Za-z]{3}/\d{3}/[A-Za-z]\d{2}/\d{3}$";
             Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
 
@@ -75,38 +83,33 @@ public class StudentViewModel : INotifyPropertyChanged
                 string idNumber = worksheet.Cells[row, 5].Text;
                 string nationality = worksheet.Cells[row, 6].Text;
 
-                // Check if the admission number matches the regex pattern
                 if (regex.IsMatch(admissionNumber))
                 {
                     string course = GetCourseFromAdmissionNumber(admissionNumber);
                     DateTime expiryDate = CalculateExpiryDate(admissionNumber);
 
-                    students.Add(new Student
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        SerialNo = no,
-                        Name = name.ToUpper(),
-                        Gender = gender.ToUpper(),
-                        AdmissionNumber = admissionNumber.ToUpper(),
-                        IdNumber = idNumber.ToUpper(),
-                        Course = course.ToUpper(),
-                        Nationality = nationality.ToUpper(),
-                        ExpiryDate = expiryDate
+                        Students.Add(new Student
+                        {
+                            Id = no,
+                            Name = name.ToUpper(),
+                            Gender = gender.ToUpper(),
+                            AdmissionNumber = admissionNumber.ToUpper(),
+                            IdNumber = idNumber.ToUpper(),
+                            Course = course.ToUpper(),
+                            Nationality = nationality.ToUpper(),
+                            ExpiryDate = expiryDate
+                        });
                     });
-                }
-                else
-                {
-                    // If admission number doesn't match, skip this entry
-                    continue;
                 }
 
                 if (row % batchSize == 0)
                 {
-                    // Optionally clear students after each batch to manage memory
-                    students.Clear();
+                    await Task.Delay(100); // Simulate batch processing
                 }
             }
         }
-        return students;
     }
 
     private string GetCourseFromAdmissionNumber(string admissionNumber)
@@ -138,6 +141,132 @@ public class StudentViewModel : INotifyPropertyChanged
         return expiryDate;
     }
 
+    private void UploadPhotos()
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            DefaultExt = ".jpg",
+            Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png",
+            Multiselect = true
+        };
+
+        bool? result = openFileDialog.ShowDialog();
+        if (result == true)
+        {
+            foreach (var filePath in openFileDialog.FileNames)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(filePath).ToUpper();
+                var student = Students.FirstOrDefault(s => s.AdmissionNumber == fileName);
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (student != null)
+                    {
+                        student.PhotoPath = ProcessPhoto(filePath);
+                    }
+                    else
+                    {
+                        Students.Add(new Student
+                        {
+                            AdmissionNumber = fileName,
+                            PhotoPath = ProcessPhoto(filePath)
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+    private string ProcessPhoto(string filePath)
+    {
+        return ResizeAndCropPhoto(filePath);
+    }
+
+    private string ResizeAndCropPhoto(string filePath)
+    {
+        using (var srcImage = new Mat(filePath))
+        {
+            using (var grayImage = new Mat())
+            {
+                Cv2.CvtColor(srcImage, grayImage, ColorConversionCodes.BGR2GRAY);
+
+                string haarCascadePath = "haarcascade_frontalface_default.xml";
+                var faceCascade = new CascadeClassifier(haarCascadePath);
+
+                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(
+                    grayImage,
+                    scaleFactor: 1.1,
+                    minNeighbors: 5,
+                    minSize: new OpenCvSharp.Size(100, 100));
+
+                if (faces.Length > 0)
+                {
+                    OpenCvSharp.Rect faceRect = faces[0];
+
+                    using (var faceImage = new Mat(srcImage, faceRect))
+                    {
+                        using (var resizedFace = new Mat())
+                        {
+                            Cv2.Resize(faceImage, resizedFace, new OpenCvSharp.Size(600, 600));
+
+                            string processedPhotoPath = Path.Combine(
+                                Path.GetDirectoryName(filePath),
+                                "Processed_" + Path.GetFileName(filePath));
+
+                            resizedFace.SaveImage(processedPhotoPath);
+                            return processedPhotoPath;
+                        }
+                    }
+                }
+                else
+                {
+                    return filePath;
+                }
+            }
+        }
+    }
+
+    private void CropPhoto(string admissionNumber)
+    {
+        var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
+        if (student != null && !string.IsNullOrEmpty(student.PhotoPath))
+        {
+            student.PhotoPath = ResizeAndCropPhoto(student.PhotoPath);
+            OnPropertyChanged(nameof(Students));
+        }
+    }
+
+    private void DeletePhoto(string admissionNumber)
+    {
+        var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
+        if (student != null)
+        {
+            student.PhotoPath = null;
+            OnPropertyChanged(nameof(Students));
+        }
+    }
+
+    private void ReuploadPhoto(string admissionNumber)
+    {
+        var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
+        if (student != null)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".jpg",
+                Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png",
+                Multiselect = false
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                student.PhotoPath = ProcessPhoto(openFileDialog.FileName);
+                OnPropertyChanged(nameof(Students));
+            }
+        }
+    }
+
     private async Task ExportToFileAsync()
     {
         SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -150,7 +279,7 @@ public class StudentViewModel : INotifyPropertyChanged
         if (result == true)
         {
             string filePath = saveFileDialog.FileName;
-            await Task.Run(() => ExportDataToExcel(filePath, Students));
+            await Task.Run(() => ExportDataToExcel(filePath, Students.ToList()));
             MessageBox.Show("Data exported successfully!");
         }
     }
@@ -161,7 +290,7 @@ public class StudentViewModel : INotifyPropertyChanged
         using (ExcelPackage package = new ExcelPackage(file))
         {
             ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Students");
-            worksheet.Cells[1, 1].Value = "Serial No";
+            worksheet.Cells[1, 1].Value = "Id";
             worksheet.Cells[1, 2].Value = "Name";
             worksheet.Cells[1, 3].Value = "Gender";
             worksheet.Cells[1, 4].Value = "Admission Number";
@@ -173,14 +302,14 @@ public class StudentViewModel : INotifyPropertyChanged
             int row = 2;
             foreach (var student in students)
             {
-                worksheet.Cells[row, 1].Value = student.SerialNo; 
-                worksheet.Cells[row, 2].Value = student.Name.ToUpper();
-                worksheet.Cells[row, 3].Value = student.Gender.ToUpper();
-                worksheet.Cells[row, 4].Value = student.AdmissionNumber.ToUpper();
-                worksheet.Cells[row, 5].Value = student.IdNumber.ToUpper();
-                worksheet.Cells[row, 6].Value = student.Course.ToUpper();
-                worksheet.Cells[row, 7].Value = student.Nationality.ToUpper();
-                worksheet.Cells[row, 8].Value = student.ExpiryDate.ToString("yyyy");
+                worksheet.Cells[row, 1].Value = student.Id;
+                worksheet.Cells[row, 2].Value = student.Name;
+                worksheet.Cells[row, 3].Value = student.Gender;
+                worksheet.Cells[row, 4].Value = student.AdmissionNumber;
+                worksheet.Cells[row, 5].Value = student.IdNumber;
+                worksheet.Cells[row, 6].Value = student.Course;
+                worksheet.Cells[row, 7].Value = student.Nationality;
+                worksheet.Cells[row, 8].Value = student.ExpiryDate.ToShortDateString();
                 row++;
             }
 
@@ -194,3 +323,4 @@ public class StudentViewModel : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
+

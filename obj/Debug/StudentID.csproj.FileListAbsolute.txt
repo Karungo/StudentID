@@ -249,8 +249,6 @@ C:\Users\KONZA\Desktop\StudentID\bin\Debug\ru\Microsoft.Data.SqlClient.resources
 C:\Users\KONZA\Desktop\StudentID\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\KONZA\Desktop\StudentID\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.csproj.AssemblyReference.cache
-C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.csproj.SuggestedBindingRedirects.cache
-C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.exe.config
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\View\MainWindow.baml
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\View\MainWindow.g.cs
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\App.g.cs
@@ -262,3 +260,11 @@ C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.csproj.CoreCompileInputs.ca
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.csproj.Up2Date
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.exe
 C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID.pdb
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\dll\x86\OpenCvSharpExtern.dll
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\dll\x86\opencv_videoio_ffmpeg4100.dll
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\dll\x64\OpenCvSharpExtern.dll
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\dll\x64\opencv_videoio_ffmpeg4100_64.dll
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\OpenCvSharp.dll
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\OpenCvSharp.xml
+C:\Users\KONZA\Desktop\StudentID\obj\Debug\StudentID_Content.g.cs
+C:\Users\KONZA\Desktop\StudentID\bin\Debug\haarcascade_frontalface_default.xml
