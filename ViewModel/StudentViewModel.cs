@@ -155,7 +155,7 @@ public class StudentViewModel : INotifyPropertyChanged
         {
             foreach (var filePath in openFileDialog.FileNames)
             {
-                string fileName = Path.GetFileNameWithoutExtension(filePath).ToUpper();
+                string fileName = Path.GetFileNameWithoutExtension(filePath).ToUpper().Replace('-', '/');
                 var student = Students.FirstOrDefault(s => s.AdmissionNumber == fileName);
 
                 Application.Current.Dispatcher.Invoke(() =>
@@ -298,6 +298,7 @@ public class StudentViewModel : INotifyPropertyChanged
             worksheet.Cells[1, 6].Value = "Course";
             worksheet.Cells[1, 7].Value = "Nationality";
             worksheet.Cells[1, 8].Value = "Expiry Date";
+            worksheet.Cells[1, 9].Value = "Photo";
 
             int row = 2;
             foreach (var student in students)
@@ -309,7 +310,15 @@ public class StudentViewModel : INotifyPropertyChanged
                 worksheet.Cells[row, 5].Value = student.IdNumber;
                 worksheet.Cells[row, 6].Value = student.Course;
                 worksheet.Cells[row, 7].Value = student.Nationality;
-                worksheet.Cells[row, 8].Value = student.ExpiryDate.ToShortDateString();
+                worksheet.Cells[row, 8].Value = student.ExpiryDate.ToString("yyyy");
+                if (!string.IsNullOrEmpty(student.PhotoPath) && File.Exists(student.PhotoPath))
+                {
+                    var imageFileInfo = new FileInfo(student.PhotoPath);
+                    var excelImage = worksheet.Drawings.AddPicture($"Photo_{row}", imageFileInfo);
+                    excelImage.SetPosition(row - 1, 0, 8, 0);
+                    excelImage.SetSize(50, 50);
+                }
+
                 row++;
             }
 
