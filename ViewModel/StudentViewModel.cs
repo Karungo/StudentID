@@ -235,23 +235,55 @@ public class StudentViewModel : INotifyPropertyChanged
                 {
                     OpenCvSharp.Rect faceRect = faces[0];
 
-                    using (var faceImage = new Mat(srcImage, faceRect))
+                    // Add padding above and below the detected face for passport-style dimensions
+                    int verticalPadding = (int)(faceRect.Height * 0.4);  // 40% of the face height as padding
+                    int horizontalPadding = (int)(faceRect.Width * 0.25); // 25% of face width as side padding
+
+                    // Adjust the rectangle to include the padding
+                    int newX = Math.Max(0, faceRect.X - horizontalPadding);
+                    int newWidth = Math.Min(srcImage.Cols - newX, faceRect.Width + 2 * horizontalPadding);
+
+                    int newY = Math.Max(0, faceRect.Y - verticalPadding);
+                    int newHeight = Math.Min(srcImage.Rows - newY, faceRect.Height + 2 * verticalPadding);
+
+                    OpenCvSharp.Rect adjustedRect = new OpenCvSharp.Rect(newX, newY, newWidth, newHeight);
+
+                    // Crop the image based on the adjusted rectangle
+                    using (var croppedImage = new Mat(srcImage, adjustedRect))
                     {
+                        // Convert target dimensions from mm to pixels
+                        int targetWidthPixels = 236; // 20mm ≈ 236 pixels
+                        int targetHeightPixels = 283; // 24mm ≈ 283 pixels
+
                         using (var resizedFace = new Mat())
                         {
-                            Cv2.Resize(faceImage, resizedFace, new OpenCvSharp.Size(600, 600));
+                            // Resize the cropped image to the required passport size of 20x24 mm (236x283 pixels)
+                            Cv2.Resize(croppedImage, resizedFace, new OpenCvSharp.Size(targetWidthPixels, targetHeightPixels));
 
-                            string processedPhotoPath = Path.Combine(
-                                Path.GetDirectoryName(filePath),
-                                "Processed_" + Path.GetFileName(filePath));
+                            // Create a new blank image with the required passport photo size (20x24 mm or 236x283 pixels)
+                            using (var finalImage = new Mat(new OpenCvSharp.Size(targetWidthPixels, targetHeightPixels), MatType.CV_8UC3, Scalar.White))
+                            {
+                                // Calculate position to center the resized face on the canvas
+                                int xOffset = (targetWidthPixels - resizedFace.Width) / 2;
+                                int yOffset = (targetHeightPixels - resizedFace.Height) / 2;
 
-                            resizedFace.SaveImage(processedPhotoPath);
-                            return processedPhotoPath;
+                                // Place the resized image onto the canvas
+                                resizedFace.CopyTo(finalImage[new OpenCvSharp.Rect(xOffset, yOffset, resizedFace.Width, resizedFace.Height)]);
+
+                                // Save the final image
+                                string processedPhotoPath = Path.Combine(
+                                    Path.GetDirectoryName(filePath),
+                                    "Processed_" + Path.GetFileName(filePath));
+
+                                finalImage.SaveImage(processedPhotoPath);
+                                return processedPhotoPath;
+                            }
                         }
                     }
                 }
                 else
                 {
+                    // If no face is detected, return the original file path
                     return filePath;
                 }
             }
@@ -347,10 +379,24 @@ public class StudentViewModel : INotifyPropertyChanged
                 worksheet.Cells[row, 8].Value = student.ExpiryDate.ToString("yyyy");
                 if (!string.IsNullOrEmpty(student.PhotoPath) && File.Exists(student.PhotoPath))
                 {
-                    var imageFileInfo = new FileInfo(student.PhotoPath);
-                    var excelImage = worksheet.Drawings.AddPicture($"Photo_{row}", imageFileInfo);
-                    excelImage.SetPosition(row - 1, 0, 8, 0);
-                    excelImage.SetSize(50, 50);
+                    // Replace '/' with '-' in the admission number
+                    string sanitizedAdmissionNumber = student.AdmissionNumber.Replace("/", "-");
+
+                    // Create a processed photo path using the sanitized admission number
+                    string processedPhotoPath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+                        "Processed_" + sanitizedAdmissionNumber + ".jpeg"
+                    );
+
+                    // Optionally, copy or process the image if necessary
+                    File.Copy(student.PhotoPath, processedPhotoPath, true);
+
+                    // Save the processed photo path in the Excel cell
+                    worksheet.Cells[row, 9].Value = processedPhotoPath;
+                }
+                else
+                {
+                    worksheet.Cells[row, 9].Value = "";
                 }
 
                 row++;
