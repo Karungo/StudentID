@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\KONZA\\Desktop\\StudentID\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|c:\\users\\konza\\desktop\\studentid\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|c:\\users\\konza\\desktop\\studentid\\viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -37,7 +37,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml",
               "RelativeDocumentMoniker": "View\\MainWindow.xaml",
@@ -90,13 +90,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "StudentViewModel.cs",
               "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\ViewModel\\StudentViewModel.cs",
               "RelativeDocumentMoniker": "ViewModel\\StudentViewModel.cs",
               "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\ViewModel\\StudentViewModel.cs",
               "RelativeToolTip": "ViewModel\\StudentViewModel.cs",
-              "ViewState": "AgIAAHEBAAAAAAAAAADwvxgBAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAIwBAAAAAAAAAAAqwAkBAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-27T09:01:20.852Z",
               "EditorCaption": ""

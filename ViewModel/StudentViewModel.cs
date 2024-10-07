@@ -253,7 +253,7 @@ public class StudentViewModel : INotifyPropertyChanged
                     {
                         // Convert target dimensions from mm to pixels
                         int targetWidthPixels = 236; // 20mm ≈ 236 pixels
-                        int targetHeightPixels = 283; // 24mm ≈ 283 pixels
+                        int targetHeightPixels = 300; // 24mm ≈ 283 pixels
 
                         using (var resizedFace = new Mat())
                         {

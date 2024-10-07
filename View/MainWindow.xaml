@@ -2,29 +2,45 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:StudentID"
-    Title="Student Data Processor" Height="600" Width="1000">
+        Title="Student Data Processor" Height="600" Width="1000">
     <Window.Resources>
         <!-- Define BooleanToVisibilityConverter -->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
 
     <Grid>
+        <!-- Define the rows and columns for the Grid -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- For header buttons -->
+            <RowDefinition Height="Auto" />
+            <!-- For progress bar -->
+            <RowDefinition Height="*" />
+            <!-- For DataGrid -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <!-- Expands to fit the window width -->
+        </Grid.ColumnDefinitions>
+
         <!-- Header Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Margin="10,10,0,0">
             <Button Content="Select Excel File" Width="150" Command="{Binding LoadFileCommand}" />
             <Button Content="Upload Photos" Width="150" Margin="10,0,0,0" Command="{Binding UploadPhotosCommand}" />
             <Button Content="Export to Excel" Width="150" Margin="10,0,0,0" Command="{Binding ExportToFileCommand}" />
         </StackPanel>
 
         <!-- Progress Indicator (ProgressBar and Text) -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="10,10,0,0">
             <ProgressBar Width="400" Height="25" Value="{Binding Progress}" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <TextBlock Text="Processing..." FontWeight="Bold" FontSize="16" Foreground="Green" Margin="10,0,0,0" 
                        Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
 
         <!-- DataGrid for Displaying Students -->
-        <DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0" Width="960" Height="470">
+        <DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="False" Grid.Row="2"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="100"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150"/>
