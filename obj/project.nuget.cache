@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "tZ4f/HR/I5k=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\KONZA\\Desktop\\StudentID\\StudentID.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KONZA\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.6\\microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

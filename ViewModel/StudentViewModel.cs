@@ -107,10 +107,23 @@ public class StudentViewModel : INotifyPropertyChanged
             {
                 string no = worksheet.Cells[row, 1].Text;
                 string name = worksheet.Cells[row, 2].Text;
-                string gender = worksheet.Cells[row, 3].Text;
+                string gender = worksheet.Cells[row, 3].Text.ToUpper();
                 string admissionNumber = worksheet.Cells[row, 4].Text;
                 string idNumber = worksheet.Cells[row, 5].Text;
                 string nationality = worksheet.Cells[row, 6].Text;
+
+                if (gender == "M")
+                {
+                    gender = "MALE";
+                }
+                else if (gender == "F")
+                {
+                    gender = "FEMALE";
+                }
+                else if (gender != "MALE" && gender != "FEMALE")
+                {
+                    gender = "Undefined";
+                }
 
                 if (regex.IsMatch(admissionNumber))
                 {
@@ -123,7 +136,7 @@ public class StudentViewModel : INotifyPropertyChanged
                         {
                             Id = no,
                             Name = name.ToUpper(),
-                            Gender = gender.ToUpper(),
+                            Gender = gender,
                             AdmissionNumber = admissionNumber.ToUpper(),
                             IdNumber = idNumber.ToUpper(),
                             Course = course.ToUpper(),
