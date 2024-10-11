@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tZ4f/HR/I5k=",
+  "dgSpecHash": "a8A4rIf1wEo=",
   "success": true,
   "projectFilePath": "C:\\Users\\KONZA\\Desktop\\StudentID\\StudentID.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\KONZA\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.6\\microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512"
+    "C:\\Users\\KONZA\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.6\\microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512",
+    "C:\\Users\\KONZA\\.nuget\\packages\\sixlabors.imagesharp\\3.1.5\\sixlabors.imagesharp.3.1.5.nupkg.sha512"
   ],
   "logs": []
 }

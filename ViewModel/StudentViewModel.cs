@@ -196,27 +196,42 @@ public class StudentViewModel : INotifyPropertyChanged
         if (result == true)
         {
             IsLoading = true;
-            await Task.WhenAll(openFileDialog.FileNames.Select(filePath => Task.Run(() =>
-            {
-                string fileName = Path.GetFileNameWithoutExtension(filePath).ToUpper().Replace('-', '/');
-                var student = Students.FirstOrDefault(s => s.AdmissionNumber == fileName);
 
-                if (student != null)
+            // Limit concurrency with a Task list
+            var uploadTasks = openFileDialog.FileNames.Select(filePath => Task.Run(() =>
+            {
+                try
                 {
-                    student.PhotoPath = ProcessPhoto(filePath);
-                }
-                else
-                {
+                    string fileName = Path.GetFileNameWithoutExtension(filePath).ToUpper().Replace('-', '/');
+                    var student = Students.FirstOrDefault(s => s.AdmissionNumber == fileName);
+
+                    string optimizedPhotoPath = ProcessPhoto(filePath); // Ensure memory-friendly processing
+
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        Students.Add(new Student
+                        if (student != null)
                         {
-                            AdmissionNumber = fileName,
-                            PhotoPath = ProcessPhoto(filePath)
-                        });
+                            student.PhotoPath = optimizedPhotoPath;
+                        }
+                        else
+                        {
+                            Students.Add(new Student
+                            {
+                                AdmissionNumber = fileName,
+                                PhotoPath = optimizedPhotoPath
+                            });
+                        }
                     });
                 }
-            })));
+                catch (Exception ex)
+                {
+                    // Log or handle exceptions as needed
+                    Console.WriteLine($"Error uploading photo for {filePath}: {ex.Message}");
+                }
+            }));
+
+            // Await tasks with controlled concurrency
+            await Task.WhenAll(uploadTasks);
 
             IsLoading = false;
         }

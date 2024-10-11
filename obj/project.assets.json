@@ -209,6 +209,12 @@
             "rid": "win10-x86"
           }
         }
+      },
+      "SixLabors.ImageSharp/3.1.5": {
+        "type": "package",
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
+        }
       }
     },
     ".NETFramework,Version=v4.8/win": {
@@ -216,6 +222,12 @@
         "type": "package",
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
+        }
+      },
+      "SixLabors.ImageSharp/3.1.5": {
+        "type": "package",
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
         }
       }
     },
@@ -225,6 +237,12 @@
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
         }
+      },
+      "SixLabors.ImageSharp/3.1.5": {
+        "type": "package",
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
+        }
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
@@ -233,6 +251,12 @@
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
         }
+      },
+      "SixLabors.ImageSharp/3.1.5": {
+        "type": "package",
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
+        }
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
@@ -240,6 +264,12 @@
         "type": "package",
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
+        }
+      },
+      "SixLabors.ImageSharp/3.1.5": {
+        "type": "package",
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
         }
       }
     }
@@ -330,11 +360,28 @@
         "runtimes/win10-x86/native/release/vcomp140_app.dll",
         "runtimes/win10-x86/native/release/vcruntime140_app.dll"
       ]
+    },
+    "SixLabors.ImageSharp/3.1.5": {
+      "sha512": "lNtlq7dSI/QEbYey+A0xn48z5w4XHSffF8222cC4F4YwTXfEImuiBavQcWjr49LThT/pRmtWJRcqA/PlL+eJ6g==",
+      "type": "package",
+      "path": "sixlabors.imagesharp/3.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/SixLabors.ImageSharp.props",
+        "lib/net6.0/SixLabors.ImageSharp.dll",
+        "lib/net6.0/SixLabors.ImageSharp.xml",
+        "sixlabors.imagesharp.128.png",
+        "sixlabors.imagesharp.3.1.5.nupkg.sha512",
+        "sixlabors.imagesharp.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
-      "Microsoft.VCRTForwarders.140 >= 1.0.6"
+      "Microsoft.VCRTForwarders.140 >= 1.0.6",
+      "SixLabors.ImageSharp >= 3.1.5"
     ]
   },
   "packageFolders": {
@@ -383,6 +430,10 @@
           "Microsoft.VCRTForwarders.140": {
             "target": "Package",
             "version": "[1.0.6, )"
+          },
+          "SixLabors.ImageSharp": {
+            "target": "Package",
+            "version": "[3.1.5, )"
           }
         },
         "imports": [
