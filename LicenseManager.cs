@@ -7,8 +7,13 @@ namespace StudentID
 {
     public class LicenseManager
     {
-        // Get the user's desktop path and set the license file path
-        private string _licenseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "licenses.txt");
+        private string _licenseFilePath;
+
+        public LicenseManager()
+        {
+            string programFilesDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            _licenseFilePath = Path.Combine(programFilesDir, "Karungo", "StudentIDInstaller", "licenses.txt");
+        }
 
         // License verification that checks only online
         public async Task<bool> VerifyLicenseOnline()

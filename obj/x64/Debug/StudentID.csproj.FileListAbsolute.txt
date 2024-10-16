@@ -114,8 +114,6 @@ C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\Microsoft.Xaml.Behaviors.pdb
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\Microsoft.Xaml.Behaviors.xml
-C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\OpenCvSharp.xml
-C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Buffers.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.ClientModel.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Collections.Immutable.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Configuration.ConfigurationManager.xml
@@ -123,10 +121,7 @@ C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Diagnostics.DiagnosticSour
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Formats.Asn1.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.IO.FileSystem.AccessControl.xml
-C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Memory.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Memory.Data.xml
-C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Numerics.Vectors.xml
-C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Security.AccessControl.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Security.Cryptography.ProtectedData.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Security.Permissions.xml
@@ -134,7 +129,6 @@ C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Security.Principal.Windows
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Text.Encodings.Web.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Text.Json.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.ValueTuple.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\de\MahApps.Metro.resources.dll
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\de\Microsoft.Data.SqlClient.resources.dll
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\es\Microsoft.Data.SqlClient.resources.dll
@@ -180,3 +174,13 @@ C:\Users\KONZA\Desktop\StudentID\obj\x64\Debug\StudentID.csproj.CoreCompileInput
 C:\Users\KONZA\Desktop\StudentID\obj\x64\Debug\StudentID.csproj.Up2Date
 C:\Users\KONZA\Desktop\StudentID\obj\x64\Debug\StudentID.exe
 C:\Users\KONZA\Desktop\StudentID\obj\x64\Debug\StudentID.pdb
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\StudentID.exe.manifest
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\StudentID.application
+C:\Users\KONZA\Desktop\StudentID\obj\x64\Debug\StudentID.exe.manifest
+C:\Users\KONZA\Desktop\StudentID\obj\x64\Debug\StudentID.application
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\OpenCvSharp.xml
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Buffers.xml
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Memory.xml
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Numerics.Vectors.xml
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.ValueTuple.xml

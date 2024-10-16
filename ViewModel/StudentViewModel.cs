@@ -56,7 +56,7 @@ public class StudentViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(IsLoading));
         }
     }
-
+    
     private CancellationTokenSource _cancellationTokenSource;
 
     public StudentViewModel()
@@ -242,15 +242,39 @@ public class StudentViewModel : INotifyPropertyChanged
         return ResizeAndCropPhoto(filePath);
     }
 
+    private static bool _errorDisplayed = false;
     private string ResizeAndCropPhoto(string filePath)
     {
+        // Construct the path for the haarcascade file
+        string programFilesDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        string haarCascadePath = Path.Combine(programFilesDir, "Karungo", "StudentIDInstaller", "haarcascade_frontalface_default.xml");
+
+        if (!File.Exists(haarCascadePath))
+        {
+            // Check if the error dialog has already been shown
+            if (!_errorDisplayed)
+            {
+                _errorDisplayed = true;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"Haarcascade file not found at {haarCascadePath}. The application will now close.",
+                                    "File Not Found",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                });
+
+                Application.Current.Shutdown();
+            }
+            return "Not found";
+        }
+
         using (var srcImage = new Mat(filePath))
         {
             using (var grayImage = new Mat())
             {
                 Cv2.CvtColor(srcImage, grayImage, ColorConversionCodes.BGR2GRAY);
 
-                string haarCascadePath = "haarcascade_frontalface_default.xml";
+                // Load the cascade classifier from the file
                 var faceCascade = new CascadeClassifier(haarCascadePath);
 
                 OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(
@@ -263,11 +287,11 @@ public class StudentViewModel : INotifyPropertyChanged
                 {
                     OpenCvSharp.Rect faceRect = faces[0];
 
-                    // Add padding above and below the detected face for passport-style dimensions
-                    int verticalPadding = (int)(faceRect.Height * 0.4);  // 40% of the face height as padding
-                    int horizontalPadding = (int)(faceRect.Width * 0.25); // 25% of face width as side padding
+                    // Add padding to the face rectangle for passport-style photo
+                    int verticalPadding = (int)(faceRect.Height * 0.4);
+                    int horizontalPadding = (int)(faceRect.Width * 0.25);
 
-                    // Adjust the rectangle to include the padding
+                    // Adjust the rectangle to include padding
                     int newX = Math.Max(0, faceRect.X - horizontalPadding);
                     int newWidth = Math.Min(srcImage.Cols - newX, faceRect.Width + 2 * horizontalPadding);
 
@@ -279,26 +303,20 @@ public class StudentViewModel : INotifyPropertyChanged
                     // Crop the image based on the adjusted rectangle
                     using (var croppedImage = new Mat(srcImage, adjustedRect))
                     {
-                        // Convert target dimensions from mm to pixels
-                        int targetWidthPixels = 236; // 20mm ≈ 236 pixels
-                        int targetHeightPixels = 300; // 24mm ≈ 283 pixels
+                        int targetWidthPixels = 236;
+                        int targetHeightPixels = 300;
 
                         using (var resizedFace = new Mat())
                         {
-                            // Resize the cropped image to the required passport size of 20x24 mm (236x283 pixels)
                             Cv2.Resize(croppedImage, resizedFace, new OpenCvSharp.Size(targetWidthPixels, targetHeightPixels));
 
-                            // Create a new blank image with the required passport photo size (20x24 mm or 236x283 pixels)
                             using (var finalImage = new Mat(new OpenCvSharp.Size(targetWidthPixels, targetHeightPixels), MatType.CV_8UC3, Scalar.White))
                             {
-                                // Calculate position to center the resized face on the canvas
                                 int xOffset = (targetWidthPixels - resizedFace.Width) / 2;
                                 int yOffset = (targetHeightPixels - resizedFace.Height) / 2;
 
-                                // Place the resized image onto the canvas
                                 resizedFace.CopyTo(finalImage[new OpenCvSharp.Rect(xOffset, yOffset, resizedFace.Width, resizedFace.Height)]);
 
-                                // Save the final image
                                 string processedPhotoPath = Path.Combine(
                                     Path.GetDirectoryName(filePath),
                                     "Processed_" + Path.GetFileName(filePath));
@@ -311,7 +329,8 @@ public class StudentViewModel : INotifyPropertyChanged
                 }
                 else
                 {
-                    // If no face is detected, return the original file path
+                    // Log if no face is detected
+                    Console.WriteLine($"No face detected in {filePath}. Returning original photo.");
                     return filePath;
                 }
             }
