@@ -184,3 +184,5 @@ C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Memory.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Numerics.Vectors.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\System.ValueTuple.xml
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\OpenCvSharpExtern.dll
+C:\Users\KONZA\Desktop\StudentID\bin\x64\Debug\opencv_videoio_ffmpeg4100_64.dll

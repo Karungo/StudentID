@@ -325,6 +325,7 @@
     </ApplicationDefinition>
     <Compile Include="Interface\RelayCommand.cs" />
     <Compile Include="LicenseManager.cs" />
+    <Compile Include="Model\Photo.cs" />
     <Compile Include="ViewModel\StudentViewModel.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -376,6 +377,12 @@
   <ItemGroup>
     <Content Include="haarcascade_frontalface_default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenCvSharpExtern.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="opencv_videoio_ffmpeg4100_64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="insurance.ico" />
   </ItemGroup>

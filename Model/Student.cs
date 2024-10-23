@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace StudentID.Model
 {
@@ -16,9 +17,9 @@ namespace StudentID.Model
         public string IdNumber { get; set; }
         public string Course { get; set; }
         public DateTime ExpiryDate { get; set; }
-
-        // New Property for the Student's Photo
-        public string PhotoPath { get; set; } // This will store the path to the photo
+        public string PhotoPath { get; set; }
+        public ImageSource PhotoImage { get; set; }
+        public string SelectedAdmissionNumber { get; set; }
     }
 }
 

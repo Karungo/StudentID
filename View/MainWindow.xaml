@@ -29,6 +29,25 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="MiscButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#808080" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <!-- DataGrid Styling -->
         <Style TargetType="DataGrid">
@@ -63,6 +82,8 @@
             <Button Content="Select Excel File" Style="{StaticResource ActionButtonStyle}" Command="{Binding LoadFileCommand}" />
             <Button Content="Upload Photos" Style="{StaticResource ActionButtonStyle}" Command="{Binding UploadPhotosCommand}" />
             <Button Content="Export to Excel" Style="{StaticResource ActionButtonStyle}" Command="{Binding ExportToFileCommand}" />
+            <Button Content="Load Photos" Style="{StaticResource MiscButtonStyle}" Command="{Binding LoadPhotosCommand}" />
+            <Button Content="Add Admission Numbers" Style="{StaticResource MiscButtonStyle}" Command="{Binding AddAdmissionNumbersCommand}" />
         </StackPanel>
 
         <!-- Progress Indicator (ProgressBar and Text) -->
@@ -77,32 +98,47 @@
             <DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="False"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="45" />
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="*" />
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="60" />
                     <DataGridTextColumn Header="Admission Number" Binding="{Binding AdmissionNumber}" Width="*" />
                     <DataGridTextColumn Header="ID Number" Binding="{Binding IdNumber}" Width="*" />
-                    <DataGridTextColumn Header="Course" Binding="{Binding Course}" Width="*" />
-                    <DataGridTextColumn Header="Expiry Date" Binding="{Binding ExpiryDate}" Width="*" />
+                    <DataGridTextColumn Header="Course" Binding="{Binding Course}" Width="37" />
+                    <DataGridTextColumn Header="Expiry Date" Binding="{Binding ExpiryDate, StringFormat='yyyy'}" Width="50" />
 
                     <!-- Photo Column with Dynamic Height -->
                     <DataGridTemplateColumn Header="Photo" Width="250">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding PhotoPath}" Width="200" 
+                                <Image Source="{Binding PhotoImage}" Width="200" 
                                        Stretch="Uniform" Margin="5" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
-                    <!-- Actions Column -->
-                    <DataGridTemplateColumn Header="Actions" Width="300">
+                    <!-- Rename Photo Column -->
+                    <DataGridTemplateColumn Header="Rename" Width="250">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Crop" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.CropPhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" />
-                                    <Button Content="Delete" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.DeletePhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" />
-                                    <Button Content="Reupload" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.ReuploadPhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" />
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <!-- ComboBox for selecting admission numbers -->
+                                    <ComboBox ItemsSource="{Binding DataContext.AdmissionNumbers, RelativeSource={RelativeSource AncestorType=Window}}"
+                          SelectedItem="{Binding SelectedAdmissionNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                          Width="150"/>
+                                    <!-- Button to rename the photo -->
+                                    <Button Content="Rename"
+                            Command="{Binding DataContext.RenamePhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                            CommandParameter="{Binding}" Width="75" Style="{StaticResource ActionButtonStyle}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!-- Actions Column -->
+                    <DataGridTemplateColumn Header="Actions" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Content="Delete" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.DeletePhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" VerticalAlignment="Center"/>
+                                    <Button Content="Reupload" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.ReuploadPhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

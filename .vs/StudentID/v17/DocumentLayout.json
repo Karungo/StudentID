@@ -7,28 +7,12 @@
       "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:viewmodel\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\licensemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:licensemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|C:\\Users\\KONZA\\Desktop\\StudentID\\model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|c:\\users\\konza\\desktop\\studentid\\model\\photo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584EA06A-F337-4373-8479-DC58901E64BB}|StudentID.csproj|solutionrelative:model\\photo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,46 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-09-30T12:18:51.394Z",
-              "IsPinned": true
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "View\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml",
-              "RelativeToolTip": "View\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-03T08:24:52.626Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Student.cs",
-              "RelativeDocumentMoniker": "Model\\Student.cs",
-              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Student.cs",
-              "RelativeToolTip": "Model\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T10:16:17.219Z"
             },
             {
               "$type": "Document",
@@ -87,7 +36,7 @@
               "RelativeDocumentMoniker": "ViewModel\\StudentViewModel.cs",
               "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\ViewModel\\StudentViewModel.cs",
               "RelativeToolTip": "ViewModel\\StudentViewModel.cs",
-              "ViewState": "AgIAAOkAAAAAAAAAAAAqwP4AAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAEECAAAAAAAAAAAUwK4BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-27T09:01:20.852Z",
               "EditorCaption": ""
@@ -95,38 +44,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Title": "Photo.cs",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Photo.cs",
+              "RelativeDocumentMoniker": "Model\\Photo.cs",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Photo.cs",
+              "RelativeToolTip": "Model\\Photo.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T14:25:30.583Z"
+              "WhenOpened": "2024-10-23T10:22:01.325Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LicenseManager.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\LicenseManager.cs",
-              "RelativeDocumentMoniker": "LicenseManager.cs",
-              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\LicenseManager.cs",
-              "RelativeToolTip": "LicenseManager.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAA1AAAAAAAAAA==",
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Student.cs",
+              "RelativeDocumentMoniker": "Model\\Student.cs",
+              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\Model\\Student.cs",
+              "RelativeToolTip": "Model\\Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T14:22:17.023Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "View\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\KONZA\\Desktop\\StudentID\\View\\MainWindow.xaml.cs",
-              "RelativeToolTip": "View\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T11:56:33.141Z"
+              "WhenOpened": "2024-09-27T10:16:17.219Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -17,5 +17,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("packages/opencvsharp4.runtime.win.4.10.0.20240616/runtimes/win-x64/native/opencv_" +
     "videoio_ffmpeg4100_64.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("haarcascade_frontalface_default.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("opencvsharpextern.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("opencv_videoio_ffmpeg4100_64.dll")]
 
 
