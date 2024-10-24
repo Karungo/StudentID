@@ -127,7 +127,7 @@
                                     <!-- Button to rename the photo -->
                                     <Button Content="Rename"
                             Command="{Binding DataContext.RenamePhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                            CommandParameter="{Binding}" Width="75" Style="{StaticResource ActionButtonStyle}" VerticalAlignment="Center"/>
+                            CommandParameter="{Binding}" Width="75" Style="{StaticResource MiscButtonStyle}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -137,8 +137,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Button Content="Delete" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.DeletePhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" VerticalAlignment="Center"/>
-                                    <Button Content="Reupload" Width="75" Style="{StaticResource ActionButtonStyle}" Command="{Binding DataContext.ReuploadPhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" VerticalAlignment="Center"/>
+                                    <Button Content="Delete" Width="75" Style="{StaticResource MiscButtonStyle}" Command="{Binding DataContext.DeletePhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" VerticalAlignment="Center"/>
+                                    <Button Content="Reupload" Width="75" Style="{StaticResource MiscButtonStyle}" Command="{Binding DataContext.ReuploadPhotoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding AdmissionNumber}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

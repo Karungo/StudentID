@@ -76,7 +76,6 @@ public class StudentViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(Progress));
         }
     }
-
     private bool _isLoading;
     public bool IsLoading
     {
@@ -87,9 +86,7 @@ public class StudentViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(IsLoading));
         }
     }
-    
     private CancellationTokenSource _cancellationTokenSource;
-
     public StudentViewModel()
     {
         Students = new ObservableCollection<Student>();
@@ -122,7 +119,6 @@ public class StudentViewModel : INotifyPropertyChanged
             IsLoading = false;
         }
     }
-
     private async Task ReadExcelFileInBatchesAsync(string filePath)
     {
         ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -187,12 +183,10 @@ public class StudentViewModel : INotifyPropertyChanged
             }
         }
     }
-
     private string GetCourseFromAdmissionNumber(string admissionNumber)
     {
         return admissionNumber.Split('/')[0];
     }
-
     private DateTime CalculateExpiryDate(string admissionNumber)
     {
         string[] parts = admissionNumber.Split('/');
@@ -216,7 +210,6 @@ public class StudentViewModel : INotifyPropertyChanged
         }
         return expiryDate;
     }
-
     private async Task UploadPhotosAsync()
     {
         OpenFileDialog openFileDialog = new OpenFileDialog
@@ -328,12 +321,10 @@ public class StudentViewModel : INotifyPropertyChanged
             IsLoading = false;
         }
     }
-
     private string ProcessPhoto(string filePath)
     {
         return ResizeAndCropPhoto(filePath);
     }
-
     private static bool _errorDisplayed = false;
     private string ResizeAndCropPhoto(string filePath)
     {
@@ -428,7 +419,6 @@ public class StudentViewModel : INotifyPropertyChanged
             }
         }
     }
-
     private async Task CropPhotoAsync(string admissionNumber)
     {
         var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
@@ -438,14 +428,13 @@ public class StudentViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(Students));
         }
     }
-
     private void DeletePhoto(string admissionNumber)
     {
         var student = Students.FirstOrDefault(s => s.AdmissionNumber == admissionNumber);
         if (student != null)
         {
             student.PhotoPath = null;
-            OnPropertyChanged(nameof(Students));
+            OnPropertyChanged(nameof(Students)); // Notify UI that the Students collection has changed
             MessageBox.Show("Photo has been deleted successfully.", "Deletion Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
@@ -464,8 +453,8 @@ public class StudentViewModel : INotifyPropertyChanged
             bool? result = openFileDialog.ShowDialog();
             if (result == true)
             {
-                student.PhotoPath = ProcessPhoto(openFileDialog.FileName);
-                OnPropertyChanged(nameof(Students));
+                student.PhotoPath = ProcessPhoto(openFileDialog.FileName); // Process and set new photo path
+                OnPropertyChanged(nameof(Students)); // Notify UI that the Students collection has changed
 
                 MessageBox.Show("Photo has been re-uploaded successfully.", "Upload Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -488,9 +477,9 @@ public class StudentViewModel : INotifyPropertyChanged
                     AdmissionNumbers.Add(number.Trim());
                 }
             }
+            AdmissionNumbers = new ObservableCollection<string>(AdmissionNumbers.OrderBy(x => x));
         }
     }
-
     // Function to display an input dialog and return the user's input
     public static string ShowInputDialog(string prompt)
     {
@@ -565,7 +554,11 @@ public class StudentViewModel : INotifyPropertyChanged
     }
     private void RenamePhoto(Student student)
     {
-        if (student == null) return;
+        if (student == null || string.IsNullOrEmpty(student.PhotoPath))
+        {
+            MessageBox.Show("Invalid student or photo path.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
 
         if (!string.IsNullOrEmpty(student.SelectedAdmissionNumber))
         {
@@ -574,16 +567,29 @@ public class StudentViewModel : INotifyPropertyChanged
 
             try
             {
-                File.Move(student.PhotoPath, newFilePath); // Rename photo
-                student.PhotoPath = newFilePath; // Update path in UI
-                student.PhotoImage = LoadImageFromPath(newFilePath);
-                student.AdmissionNumber = student.SelectedAdmissionNumber;
-                AdmissionNumbers.Remove(student.SelectedAdmissionNumber);
-                OnPropertyChanged(nameof(Students));
+                if (File.Exists(student.PhotoPath))
+                {
+                    // Move the photo and rename it
+                    File.Move(student.PhotoPath, newFilePath);
+                    student.PhotoPath = newFilePath;
 
-                // Show a dialog box to notify the user of success
-                MessageBox.Show($"Photo has been renamed and admission number updated to {student.SelectedAdmissionNumber}.",
-                                "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    // Update PhotoImage for UI binding
+                    student.PhotoImage = LoadImageFromPath(newFilePath);
+                    OnPropertyChanged(nameof(student.PhotoImage));
+
+                    // Update admission number and notify UI of the change
+                    student.AdmissionNumber = student.SelectedAdmissionNumber;
+                    AdmissionNumbers.Remove(student.SelectedAdmissionNumber);
+                    OnPropertyChanged(nameof(Students));
+
+                    // Notify user of success
+                    MessageBox.Show($"Photo has been renamed and admission number updated to {student.SelectedAdmissionNumber}.",
+                                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("The original photo file could not be found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -601,7 +607,6 @@ public class StudentViewModel : INotifyPropertyChanged
         bitmap.Freeze(); // Freeze for thread safety
         return bitmap;
     }
-
     private async Task ExportToFileAsync()
     {
         SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -620,7 +625,6 @@ public class StudentViewModel : INotifyPropertyChanged
             MessageBox.Show("Data exported successfully!");
         }
     }
-
     private void ExportDataToExcel(string filePath, List<Student> students)
     {
         ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -678,7 +682,6 @@ public class StudentViewModel : INotifyPropertyChanged
             package.Save();
         }
     }
-
     public event PropertyChangedEventHandler PropertyChanged;
     protected void OnPropertyChanged(string propertyName)
     {

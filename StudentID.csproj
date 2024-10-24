@@ -325,7 +325,6 @@
     </ApplicationDefinition>
     <Compile Include="Interface\RelayCommand.cs" />
     <Compile Include="LicenseManager.cs" />
-    <Compile Include="Model\Photo.cs" />
     <Compile Include="ViewModel\StudentViewModel.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

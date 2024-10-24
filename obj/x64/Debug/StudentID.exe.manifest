@@ -655,14 +655,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="StudentID.exe" size="411104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="StudentID.exe" size="410592">
       <assemblyIdentity name="StudentID" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sZiA9gki+TKTlzEiZo6BXWVCRfTWM+9hVqmX7LFRvzU=</dsig:DigestValue>
+        <dsig:DigestValue>I9WV0Rww1CTqQrOXrA9JGSY0wsRz8qlMiQYliDZ2V0U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
