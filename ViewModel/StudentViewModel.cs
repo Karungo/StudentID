@@ -562,7 +562,8 @@ public class StudentViewModel : INotifyPropertyChanged
 
         if (!string.IsNullOrEmpty(student.SelectedAdmissionNumber))
         {
-            string newFileName = student.SelectedAdmissionNumber + Path.GetExtension(student.PhotoPath);
+            string sanitizedAdmissionNumber = student.SelectedAdmissionNumber.Replace("/", "-");
+            string newFileName = sanitizedAdmissionNumber + Path.GetExtension(student.PhotoPath);
             string newFilePath = Path.Combine(Path.GetDirectoryName(student.PhotoPath), newFileName);
 
             try
